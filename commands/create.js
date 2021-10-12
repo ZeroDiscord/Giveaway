@@ -1,7 +1,7 @@
 module.exports.run = async (client, message) => {
   const Discord = require("discord.js");
   const ms = require("ms");
- const messages = require("../storage/message");
+ const messages = require("../utils/message");
   let time = "";
   let winnersCount;
   let prize = "";
