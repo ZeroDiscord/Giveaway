@@ -31,13 +31,13 @@ module.exports = {
       required: true
     },
     {
-      name: 'role',
+      name: 'bonusrole',
       description: 'Role which would recieve bonus entries',
       type: 'ROLE',
       required: false
     },
     {
-      name: 'amount',
+      name: 'bonusamount',
       description: 'The amount of bonus entries the role will recieve',
       type: 'INTEGER',
       required: false
@@ -49,7 +49,7 @@ module.exports = {
       required: false
     },
     {
-      name: 'rolereq',
+      name: 'role',
       description: 'Role you want to add as giveaway joining requirement',
       type: 'ROLE',
       required: false
@@ -77,9 +77,9 @@ module.exports = {
         ephemeral: true
       });
     }
-    const bonusRole = interaction.options.getRole('role')
-    const bonusEntries = interaction.options.getInteger('amount')
-    let rolereq = interaction.options.getRole('rolereq')
+    const bonusRole = interaction.options.getRole('bonusrole')
+    const bonusEntries = interaction.options.getInteger('bonusamount')
+    let rolereq = interaction.options.getRole('role')
     let invite = interaction.options.getString('invite')
 
     if (bonusRole) {
@@ -147,13 +147,8 @@ module.exports = {
           bonusEntries: [
             {
               // Members who have the role which is assigned to "rolename" get the amount of bonus entries which are assigned to "BonusEntries"
-              bonus: function(member){
-                  if (member.roles.cache.some(bonusRole)){
-                    return bonusEntries
-                  }
-                  return null
-                },
-              cumulative: false
+              bonus: new Function('member', `return member.roles.cache.some((r) => r.name === \'${bonusRole?.name}\') ? ${bonusEntries} : null`),
+              cumulative: false 
             }
           ],
           // Messages
