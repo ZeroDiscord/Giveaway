@@ -101,7 +101,7 @@ module.exports = {
         )
         reqinvite = invitex
         if (!client_is_in_server) {
-          return interaction.editReply({
+          return interaction.channel.send({
             embeds: [{
               color: "#2F3136",
               author: {
