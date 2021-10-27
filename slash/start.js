@@ -92,78 +92,76 @@ module.exports = {
     }
 
 
-    
+    await interaction.deferReply({ ephemeral: true })
     let reqinvite;
-    if(invite){
-     await client.fetchInvite(invite).then(invitex => {
-        let client_is_in_server = client.guilds.cache.get(
-          invitex.guild.id
-        )
-        reqinvite = invitex
-        if (!client_is_in_server) {
-          return interaction.channel.send({
-            embeds: [{
-              color: "#2F3136",
-              author: {
-                name: client.user.username,
-                icon_url: client.user.avatarURL
-              },
-              title: "Server Check!",
-              url: "https://youtube.com/c/ZeroSync",
-              description:
-                "Woah woah woah! I see a new server! are you sure I am in that? You need to invite me there to set that as a requirement! 😳",
-              timestamp: new Date(),
-              footer: {
-                icon_url: client.user.avatarURL,
-                text: "Server Check"
-              }
-            }]
-          })
-        }
-      })
-     }
-     if(rolereq && !invite){
-      messages.inviteToParticipate = `**React with 🎉 to participate!**\n>>> - Only members having ${rolereq} are allowed to participate in this giveaway!`
-     }
-      if(rolereq && invite){
-        messages.inviteToParticipate = `**React with 🎉 to participate!**\n>>> - Only members having ${rolereq} are allowed to participate in this giveaway!\n- Members are required to join [this server](${invite}) to participate in this giveaway!`
-      }
-      if(!rolereq && invite){
-        messages.inviteToParticipate = `**React with 🎉 to participate!**\n>>> - Members are required to join [this server](${invite}) to participate in this giveaway!`
-      }
-
-        interaction.deferReply({ ephemeral: true })
-
-
-        // start giveaway
-        await client.giveawaysManager.start(giveawayChannel, {
-          // The giveaway duration
-          duration: ms(giveawayDuration),
-          // The giveaway prize
-          prize: giveawayPrize,
-          // The giveaway winner count
-          winnerCount: parseInt(giveawayWinnerCount),
-          // BonusEntries If Provided
-          bonusEntries: [
-            {
-              // Members who have the role which is assigned to "rolename" get the amount of bonus entries which are assigned to "BonusEntries"
-              bonus: new Function('member', `return member.roles.cache.some((r) => r.name === \'${bonusRole?.name}\') ? ${bonusEntries} : null`),
-              cumulative: false 
+    if (invite) {
+      let invitex = await client.fetchInvite(invite)
+      let client_is_in_server = client.guilds.cache.get(
+        invitex.guild.id
+      )
+      reqinvite = invitex
+      if (!client_is_in_server) {
+        return interaction.editReply({
+          embeds: [{
+            color: "#2F3136",
+            author: {
+              name: client.user.username,
+              icon_url: client.user.avatarURL
+            },
+            title: "Server Check!",
+            url: "https://youtube.com/c/ZeroSync",
+            description:
+              "Woah woah woah! I see a new server! are you sure I am in that? You need to invite me there to set that as a requirement! 😳",
+            timestamp: new Date(),
+            footer: {
+              icon_url: client.user.avatarURL,
+              text: "Server Check"
             }
-          ],
-          // Messages
-          messages,
-          extraData: {
-            server: reqinvite == null ? "null" : reqinvite.guild.id,
-            role: rolereq == null ? "null" : rolereq.id,
-          }
-        });
-        interaction.editReply({
-          content:
-            `Giveaway started in ${giveawayChannel}!`,
-          ephemeral: true
+          }]
         })
-        
+      }
+    }
+
+    if (rolereq && !invite) {
+      messages.inviteToParticipate = `**React with 🎉 to participate!**\n>>> - Only members having ${rolereq} are allowed to participate in this giveaway!`
+    }
+    if (rolereq && invite) {
+      messages.inviteToParticipate = `**React with 🎉 to participate!**\n>>> - Only members having ${rolereq} are allowed to participate in this giveaway!\n- Members are required to join [this server](${invite}) to participate in this giveaway!`
+    }
+    if (!rolereq && invite) {
+      messages.inviteToParticipate = `**React with 🎉 to participate!**\n>>> - Members are required to join [this server](${invite}) to participate in this giveaway!`
+    }
+
+
+    // start giveaway
+    client.giveawaysManager.start(giveawayChannel, {
+      // The giveaway duration
+      duration: ms(giveawayDuration),
+      // The giveaway prize
+      prize: giveawayPrize,
+      // The giveaway winner count
+      winnerCount: parseInt(giveawayWinnerCount),
+      // BonusEntries If Provided
+      bonusEntries: [
+        {
+          // Members who have the role which is assigned to "rolename" get the amount of bonus entries which are assigned to "BonusEntries"
+          bonus: new Function('member', `return member.roles.cache.some((r) => r.name === \'${bonusRole ?.name}\') ? ${bonusEntries} : null`),
+          cumulative: false
+        }
+      ],
+      // Messages
+      messages,
+      extraData: {
+        server: reqinvite == null ? "null" : reqinvite.guild.id,
+        role: rolereq == null ? "null" : rolereq.id,
+      }
+    });
+    interaction.editReply({
+      content:
+        `Giveaway started in ${giveawayChannel}!`,
+      ephemeral: true
+    })
+
     if (bonusRole) {
       let giveaway = new Discord.MessageEmbed()
         .setAuthor(`Bonus Entries Alert!`)
