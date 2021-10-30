@@ -40,9 +40,9 @@ Copyright 2021 © All RIghts are Reserved
 **Creative Commons Zero v1.0 Universal**
 [View the license here](https://github.com/ZeroDiscord/Giveaway/blob/main/LICENSE)
 
+## 💨 Run the projects
 
-# [Host On Repl.it](https://repl.it/github/ZeroDiscord/Giveaway)
-# Remix On Glitch
-[![Remix On Glitch](https://cdn.glitch.com/2bdfb3f8-05ef-4035-a06e-2043962a3a13%2Fremix-button.svg?1504724691606)](https://glitch.com/edit/#!/import/github/ZeroDiscord/Giveaway)
+[![Run on Repl.it](https://repl.it/badge/github/SudhanPlayz/Discord-MusicBot)]((https://repl.it/github/ZeroDiscord/Giveaway))
+[![Remix on Glitch](https://cdn.glitch.com/2703baf2-b643-4da7-ab91-7ee2a2d00b5b%2Fremix-button.svg)](https://glitch.com/edit/#!/import/github/ZeroDiscord/Giveaway)
 
 ## ⚠ This bot needs a [Node.js v16+](https://nodejs.org/en/blog/release/v16.0.0/ )  runtime to function since discord.js version 13 requires said node version to function.
