@@ -4,7 +4,7 @@ module.exports = {
     let approved =  new Discord.MessageEmbed()
     .setTimestamp()
     .setColor("#2F3136")
-    .setTitle("Entery Approved! | You have a chance to win!!")
+    .setTitle("Entry Approved! | You have a chance to win!!")
     .setDescription(
       `Your entry to [This Giveaway](https://discord.com/channels/${giveaway.guildId}/${giveaway.channelId}/${giveaway.messageId}) has been approved!`
     )
@@ -13,7 +13,7 @@ module.exports = {
    let denied =  new Discord.MessageEmbed()
     .setTimestamp()
     .setColor("#2F3136")
-    .setTitle(":x: Entery Denied | Databse Entery Not Found & Returned!")
+    .setTitle(":x: Entry Denied | Databse Entry Not Found & Returned!")
     .setDescription(
       `Your entry to [This Giveaway](https://discord.com/channels/${giveaway.guildId}/${giveaway.channelId}/${giveaway.messageId}) has been denied, please review the requirements to the giveaway properly.`
     )
@@ -32,23 +32,23 @@ module.exports = {
           messageReaction.users.remove(reactor.user);
           return reactor.send({
             embeds: [denied]
-          });
+          }).catch(e => {})
         }
       }
       if (giveaway.extraData.role !== "null" && !reactor.roles.cache.get(giveaway.extraData.role)){ 
         messageReaction.users.remove(reactor.user);
         return reactor.send({
           embeds: [denied]
-        });
+        }).catch(e => {})
       }
 
       return reactor.send({
         embeds: [approved]
-      });
+      }).catch(e => {})
     } else {
         return reactor.send({
           embeds: [approved]
-        });
+        }).catch(e => {})
     }
     }
   }

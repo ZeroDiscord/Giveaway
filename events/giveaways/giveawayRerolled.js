@@ -10,7 +10,7 @@ module.exports = {
           .setTimestamp()
           .setFooter(member.user.username, member.user.displayAvatarURL())
         ]
-      });
+      }).catch(e => {})
     });
   }
 }

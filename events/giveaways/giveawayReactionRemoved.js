@@ -11,7 +11,7 @@ module.exports = {
         )
         .setFooter("Think It was a mistake? Go react again!")
       ]
-    });
+    }).catch(e => {})
 
   }
 }
