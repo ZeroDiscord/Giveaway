@@ -12,9 +12,26 @@
 # Easy set up!
 
 ## You can run the bot in just a few steps! Let me show you how:
-### Step 1: Obtain a Bot Token From [Here](https://discord.com/developers) <br> <br>
+
+### Step 1: Install the Dependencies:
+
+```
+apt install nodejs npm -y
+curl -sL https://deb.nodesource.com/setup_16.x -o nodesource_setup.sh
+chmod 777 nodesource_setup.sh
+./nodesource_setup.sh
+apt install nodejs -y
+```
+
+If nodemon is to be used
+```
+npm install -g nodemon@latest
+```
+
+
+### Step 2: Obtain a Bot Token From [Here](https://discord.com/developers) <br> <br>
 ![alt text](https://zerosnaps.cf/2faykzzg.gif)
-### Step 2 : Replace the Token in [config.json](https://github.com/ZeroDiscord/Welcomer/blob/main/config.json) <br>
+### Step 3 : Replace the Token in [config.json](https://github.com/ZeroDiscord/Welcomer/blob/main/config.json) <br>
 ## That's all! We Are Done! Now Simply host the Bot!
 # Features
 ## Featuring | Slash Commands 
