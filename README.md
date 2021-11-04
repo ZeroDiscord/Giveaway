@@ -31,7 +31,7 @@ npm install -g nodemon@latest
 
 ### Step 2: Obtain a Bot Token From [Here](https://discord.com/developers) <br> <br>
 ![alt text](https://zerosnaps.cf/2faykzzg.gif)
-### Step 3 : Replace the Token in [config.json](https://github.com/ZeroDiscord/Welcomer/blob/main/config.json) <br>
+### Step 3 : Replace the Token in [config.json](https://github.com/ZeroDiscord/Giveaway/blob/master/config.json) <br>
 ## That's all! We Are Done! Now Simply host the Bot!
 # Features
 ## Featuring | Slash Commands 
