@@ -4,7 +4,8 @@
   "description": "Giveaway bot created with discord-giveaways package in discord.js",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "screen -S GiveawayBot nodemon index.js",
+    "stop": "screen -X GiveawayBot quit"
   },
   "author": "Zero",
   "license": "CC-Zero",
