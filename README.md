@@ -2,10 +2,8 @@
 [![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com)
 
 ### A Discord Giveaway Bot Written In Discord.js to fulfil all your needs! ranging from server requirements to a responsive create giveaways command
-<br>
 
 ## This Giveaway Bot Was Created by [ZeroSync](https://youtube.com/c/ZeroSync/)
-<br> <br>
 
 [![forthebadge](https://forthebadge.com/images/badges/it-works-why.svg)](https://forthebadge.com)
 
@@ -14,25 +12,36 @@
 ## You can run the bot in just a few steps! Let me show you how:
 
 ### Step 1: Install the Dependencies:
-
-```
+Linux 
+```sh
 apt install nodejs npm -y
 curl -sL https://deb.nodesource.com/setup_16.x -o nodesource_setup.sh
 chmod 777 nodesource_setup.sh
 ./nodesource_setup.sh
 apt install nodejs -y
-```
+npm install
 
-If nodemon is to be used
 ```
-npm install -g nodemon@latest
+Windows 
+```sh
+# https://nodejs.org/en/blog/release/v16.0.0/ get node.js
+npm install 
 ```
-
 
 ### Step 2: Obtain a Bot Token From [Here](https://discord.com/developers) <br> <br>
 ![alt text](https://zerosnaps.cf/2faykzzg.gif)
 ### Step 3 : Replace the Token in [config.json](https://github.com/ZeroDiscord/Giveaway/blob/master/config.json) <br>
-## That's all! We Are Done! Now Simply host the Bot!
+#### That's all! We Are Done! Now Simply host the Bot!
+### Run normally
+```sh
+node index.js
+```
+### Run with pm2
+```sh
+npm install -g pm2@latest
+pm2 start --name "Giveaway" index.js --watch
+```
+
 # Features
 ## Featuring | Slash Commands 
 ![Slash](https://zerosnaps.cf/ktfoi0f9.gif)
@@ -59,7 +68,6 @@ Copyright 2021 © All RIghts are Reserved
 
 
 # [Host On Repl.it](https://repl.it/github/ZeroDiscord/Giveaway)
-# Remix On Glitch
-[![Remix On Glitch](https://cdn.glitch.com/2bdfb3f8-05ef-4035-a06e-2043962a3a13%2Fremix-button.svg?1504724691606)](https://glitch.com/edit/#!/import/github/ZeroDiscord/Giveaway)
+# [Remix On Glitch](https://glitch.com/edit/#!/import/github/ZeroDiscord/Giveaway)
 
-## ⚠ This bot needs a [Node.js v16+](https://nodejs.org/en/blog/release/v16.0.0/ )  runtime to function since discord.js version 13 requires said node version to function.
+## ⚠ This bot needs a [Node.js v16+](https://nodejs.org/en/blog/release/v16.0.0/)  runtime to function since discord.js version 13 requires said node version to function.
