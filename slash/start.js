@@ -77,6 +77,18 @@ module.exports = {
         ephemeral: true
       });
     }
+   if(isNaN(ms(giveawayDuration))) {
+    return interaction.reply({
+      content: ':x: Please select a valid duration!',
+      ephemeral: true
+    });
+  }
+    if (giveawayWinnerCount < 1) {
+      return interaction.reply({
+        content: ':x: Please select a valid winner count! greater or equal to one.',
+      })
+    }
+
     const bonusRole = interaction.options.getRole('bonusrole')
     const bonusEntries = interaction.options.getInteger('bonusamount')
     let rolereq = interaction.options.getRole('role')
