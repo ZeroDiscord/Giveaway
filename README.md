@@ -41,6 +41,11 @@ node index.js
 npm install -g pm2@latest
 pm2 start --name "Giveaway" index.js --watch
 ```
+### Run with Nodemon
+```sh
+npm install -g nodemon
+nodemon index.js
+```
 
 # Features
 ## Featuring | Slash Commands 
