@@ -8,7 +8,7 @@
 - [Support Server Link](https://discord.gg/ARu4hr6hJw)
 ## Licensed Under
 ### Creative Commons Zero v1.0 Universal
-[View the license here](https://github.com/ZeroDiscord/Giveaway/blob/main/LICENSE)
+[View the license here](https://github.com/ZeroDiscord/Giveaway/blob/master/LICENSE)
 #### Copyright 2021 © All Rights are Reserved 
 
 
