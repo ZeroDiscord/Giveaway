@@ -1,154 +1,159 @@
+const Discord = require('discord.js'),
+  { MessageEmbed } = Discord,
+  parsec = require('parsec'),
+  messages = require('../utils/message');
 module.exports.run = async (client, message) => {
-  const Discord = require("discord.js");
-  const ms = require("ms");
- const messages = require("../utils/message");
-  let time = "";
-  let winnersCount;
-  let prize = "";
-  let channel = "";
-  const msg = await message.reply("🎉 Alright! Let's set up your giveaway! First, what channel do you want the giveaway in?" + `\n\nYou may cancel this giveaway by typing \`cancel\` in chat`)
-  let xembed = new Discord.MessageEmbed()
-    .setTitle("Oops! Looks Like We Met A Timeout! 🕖")
-    .setColor("#FF0000")
-    .setDescription('💥 Snap our luck!\nYou took too much time to decide!\nUse ``create`` again to start a new giveaway!\nTry to respond within **30 seconds** this time!' + `\n\nYou may cancel this giveaway by typing \`cancel\` in chat`)
-    .setFooter(client.user.username, client.user.displayAvatarURL())
-    .setTimestamp()
+  const collector = message.channel.createMessageCollector({
+    filter: (m) => m.author.id === message.author.id,
+    time: 60000,
+  });
 
-  const filter = m => m.author.id === message.author.id && !m.author.bot
-  const collector = await message.channel.createMessageCollector(filter, {
-    max: 3,
-    time: 30000
-  })
+  let xembed = new MessageEmbed()
+  .setTitle("Oops! Looks Like We Met A Timeout! 🕖")
+  .setColor("#FF0000")
+  .setDescription('💥 Snap our luck!\nYou took too much time to decide!\nUse ``create`` again to start a new giveaway!\nTry to respond within **30 seconds** this time!')
+  .setFooter(client.user.username, client.user.displayAvatarURL())
+  .setTimestamp()
 
-  collector.on("collect", async collect => {
 
-    const response = collect.content
-    if(response == "cancel"){
-      return collector.stop(msg.reply(`Cancelled Giveaway Creation.`))
-    }
-    let chn =
-      collect.mentions.channels.first() ||
-      message.guild.channels.cache.get(response)
-    if (!chn) {
-      return msg.edit("Uh-Oh! Looks like you provided an Invalid channel!\n**Try Again?**\n Example: ``#giveaways``, ``677813783523098627``"+ `\n\nYou may cancel this giveaway by typing \`cancel\` in chat`)
-    } else {
-      channel = chn
-      collector.stop(
-        msg.edit(`🎉 Sweet! The Giveaway will be in ${channel}! Next, how long should this giveaway last?`+ `\n\nYou may cancel this giveaway by typing \`cancel\` in chat`)
-      );
-    }
-    const collector2 = await message.channel.createMessageCollector(filter, {
-      max: 3,
-      time: 30000
-    });
-    collector2.on("collect", async collect2 => {
-      if(collect2.content == "cancel"){
-      return collector2.stop(msg.reply(`Cancelled Giveaway Creation.`))
-    }
-
-      let mss = ms(collect2.content);
-      if (!mss) {
-        return msg.edit(
-            "Aw Snap! Looks Like You Provided Me With An Invalid Duration\n**Try Again?**\n Example: ``10 minutes``,``10m``,``10``"+ `\n\nYou may cancel this giveaway by typing \`cancel\` in chat`
-        );
-      } else {
-        time = mss;
-        collector2.stop(
-          msg.edit(
-              `🎉 Neat! Next, how many winners should participate in this giveaway? `+ `\n\nYou may cancel this giveaway by typing \`cancel\` in chat`
+  function waitingEmbed(title, desc) {
+    return message.channel.send({
+      embeds: [
+        new MessageEmbed()
+          .setAuthor(
+            message.author.tag + ' | Giveaway Setup',
+            message.member.displayAvatarURL()
           )
+          .setTitle('Giveaway ' + title)
+          .setDescription(desc + ' within the next 60 seconds.')
+          .setFooter(
+            "Type 'cancel' to exit this process.",
+            client.user.displayAvatarURL()
+          )
+          .setTimestamp()
+          .setColor('#2F3136'),
+      ],
+    });
+  }
+
+  let winnerCount, channel, duration, prize, cancelled;
+
+  await waitingEmbed('Prize', 'Please send the giveaway prize');
+
+  collector.on('collect', async (m) => {
+    if (cancelled) return;
+
+    async function failed(options, ...cancel) {
+      if (typeof cancel[0] === 'boolean')
+        (cancelled = true) && (await m.reply(options));
+      else {
+        await m.reply(
+          options instanceof MessageEmbed ? { embeds: [options] } : options
         );
+        return await waitingEmbed(...cancel);
       }
-      const collector3 = await message.channel.createMessageCollector(filter, {
-        max: 3,
-        time: 30000,
-        errors: ['time']
-      });
-      collector3.on("collect", async collect3 => {
-        const response3 = collect3.content.toLowerCase()
-        if(response3 == "cancel"){
-      return collector3.stop(msg.reply(`Cancelled Giveaway Creation.`))
     }
-        if (parseInt(response3) < 1 || isNaN(parseInt(response3))) {
-          return msg.edit(
-           
-              "Boi! Winners Must Be A Number or greater than equal to one!\n**Try Again?**\n Example ``1``,``10``, etcetra."+ `\n\nYou may cancel this giveaway by typing \`cancel\` in chat`
+
+    if (m.content === 'cancel') return await failed('Cancelled Giveaway Creation.', true);
+
+    switch (true) {
+      case !prize: {
+        if (m.content.length > 256)
+          return await failed(
+            'The prize can not be more than 256 characters.',
+            'Prize',
+            'Please send the giveaway prize'
           );
-        } else {
-          winnersCount = parseInt(response3);
-          collector3.stop(
-            msg.edit(
-                `🎉 Alright, Generous Human! Next, What should be the prize for this giveaway?`+ `\n\nYou may cancel this giveaway by typing \`cancel\` in chat`
-            )
+        else {
+          prize = m.content;
+          await waitingEmbed('Channel', 'Please send the giveaway channel');
+        }
+
+        break;
+      }
+
+      case !channel: {
+        if (!(_channel = m.mentions.channels.first() || m.guild.channels.cache.get(m.content)))
+          return await failed(
+            'Please send a valid channel / channel ID.',
+            'Channel',
+            'Please send the giveaway channel'
+          );
+        else if (!_channel.isText())
+          return await failed(
+            'The channel must be a text channel.',
+            'Channel',
+            'Please send the giveaway channel'
+          );
+        else {
+          channel = _channel;
+          await waitingEmbed(
+            'Winner Count',
+            'Please send the giveaway winner count.'
           );
         }
-        const collector4 = await message.channel.createMessageCollector(
-          filter,
-          { max: 3, time: 30000 }
-        );
-        collector4.on("collect", async collect4 => {
 
-          const response4 = collect4.content.toLowerCase();
-          if(response4 == "cancel"){
-      return collector4.stop(msg.reply(`Cancelled Giveaway Creation.`))
-    }
-          prize = response4;
-                collector4.stop(
-                  msg.edit(
-                    (`🎉 Done the giveaway for \`${prize}\` is starting in ${channel}! which will last for **${ms(
-                        time,
-                        { long: true }
-                      )}** and there will be **${winnersCount}** winner(s)!`
-                    )
-                  )
-                )
-                await collect.delete()
-                await collect2.delete()
-                await collect3.delete()
-                await collect4.delete()
-                
-                client.giveawaysManager.start(channel, {
-                  duration: parseInt(time),
-                  prize: prize,
-                  hostedBy: client.config.hostedBy ? message.author : null,
-                  winnerCount: parseInt(winnersCount),
-                  messages
-                })
-              });
-          });
+        break;
+      }
+
+      case !winnerCount: {
+        if (!(_w = parseInt(m.content)))
+          return await failed(
+            'The number of winners must be an integer.',
+
+            'Winner Count',
+            'Please send the giveaway winner count.'
+          );
+        if (_w < 1)
+          return await failed(
+            'Winner count must be more than 1.',
+            'Winner Count',
+            'Please send the giveaway winner count.'
+          );
+        else if (_w > 15)
+          return await failed(
+            'Winner count must be less than 15.',
+            'Winner Count',
+            'Please send the giveaway winner count.'
+          );
+        else {
+          winnerCount = _w;
+          await waitingEmbed('Duration', 'Please send the giveaway duration');
+        }
+
+        break;
+      }
+
+      case !duration: {
+        if (!(_d = parsec(m.content).duration))
+          return await failed(
+            'Please provide a valid duration.',
+            'Duration',
+            'Please send the giveaway duration'
+          );
+        if (_d > parsec('21d').duration)
+          return await failed(
+            'Duration must be less than 21 days!',
+            'Duration',
+            'Please send the giveaway duration'
+          );
+        else {
+          duration = _d;
+        }
+
+        return client.giveawaysManager.start(channel, {
+          prize,
+          duration,
+          winnerCount,
+          messages,
+          hostedBy: client.config.hostedBy && message.author,
         });
-      });
+      }
+    }
+  });
   collector.on('end', (collected, reason) => {
     if (reason == 'time') {
        message.reply({ embeds: [xembed]})
     }
   })
-  try {
-    collector2.on('end', (collected, reason) => {
-      if (reason == 'time') {
-
-        message.reply({ embeds: [xembed]})
-      }
-    });
-    collector3.on('end', (collected, reason) => {
-      if (reason == 'time') {
-         message.reply({ embeds: [xembed]})
-
-      }
-    })
-    collector4.on('end', (collected, reason) => {
-      if (reason == 'time') {
-
-         message.reply({ embeds: [xembed]})
-      }
-    })
-    collector5.on('end', (collected, reason) => {
-      if (reason == 'time') {
-
-        message.reply({ embeds: [xembed]})
-      }
-    })
-  } catch (e) {
-
-  }
-} 
+};
