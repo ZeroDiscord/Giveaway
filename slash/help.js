@@ -82,7 +82,7 @@ module.exports = {
                     }
                 });
                 collector.on('end', () => {
-                  initialMessage.update({ components: components(true) });
+                  initialMessage.edit({ components: components(true) });
               }
               )
     },
