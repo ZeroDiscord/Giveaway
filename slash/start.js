@@ -54,12 +54,6 @@ module.exports = {
       type: 'ROLE',
       required: false
     },
-        {
-      name: 'pingrole',
-      description: 'The role to ping when starting the giveaway',
-      type: 'ROLE',
-      required: false 
-    },
   ],
 
   run: async (client, interaction) => {
@@ -75,7 +69,6 @@ module.exports = {
     const giveawayChannel = interaction.options.getChannel('channel');
     const giveawayDuration = interaction.options.getString('duration');
     const giveawayWinnerCount = interaction.options.getInteger('winners');
-    const giveawayPing = interaction.options.getRole('pingrole');
     const giveawayPrize = interaction.options.getString('prize');
 
     if (!giveawayChannel.isText()) {
@@ -191,12 +184,6 @@ module.exports = {
         .setTimestamp();
       giveawayChannel.send({ embeds: [giveaway] });
     }
-    
-    if (giveawayPing) {
-        giveawayChannel.send(`${giveawayPing}`);
-      } else {
-        return;
-     }
 
   }
 
