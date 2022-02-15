@@ -54,7 +54,10 @@ module.exports.run = async (client, message) => {
       }
     }
 
-    if (m.content === 'cancel') return await failed('Cancelled Giveaway Creation.', true);
+    if (m.content === 'cancel'){ 
+  collector.stop()
+ return await failed('Cancelled Giveaway Creation.', true) 
+}
 
     switch (true) {
       case !prize: {
