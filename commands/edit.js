@@ -8,7 +8,10 @@ module.exports.run = async (client, message) => {
   let embed = new Discord.MessageEmbed()
     .setTitle("Edit A Giveaway!")
     .setColor('#2F3136')
-    .setFooter(client.user.username, client.user.displayAvatarURL())
+    .setFooter({ 
+      text: `${client.user.username}`, 
+      iconURL: client.user.displayAvatarURL() 
+    })
     .setTimestamp();
   const msg = await message.reply({
     embeds:
@@ -21,7 +24,10 @@ module.exports.run = async (client, message) => {
     .setTitle("Oops! Looks Like We Met A Timeout! 🕖")
     .setColor("#FF0000")
     .setDescription('💥 Snap our luck!\nYou took too much time to decide!\nUse ``edit`` again to edit a giveaway!\nTry to respond within **30 seconds** this time!')
-    .setFooter(client.user.username, client.user.displayAvatarURL())
+    .setFooter({ 
+      text: `${client.user.username}`, 
+      iconURL: client.user.displayAvatarURL() 
+    })
     .setTimestamp();
 
   const filter = m => m.author.id === message.author.id && !m.author.bot;
