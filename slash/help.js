@@ -71,19 +71,23 @@ module.exports = {
                     {
                         filter,
                         componentType: "SELECT_MENU",
-                        time: 300000
+                        idle: 300000,
+                        dispose: true,
                     });
         
                 collector.on('collect', (interaction) => {
                     if (interaction.values[0] === "giveaway") {
-                        interaction.update({ embeds: [giveaway], components: components(false) });
+                        interaction.update({ embeds: [giveaway], components: components(false) }).catch((e) => {});
                     } else if (interaction.values[0] === "general") {
-                        interaction.update({ embeds: [general], components: components(false) });
+                        interaction.update({ embeds: [general], components: components(false) }).catch((e) => {});
                     }
                 });
-                collector.on('end', () => {
-                  initialMessage.edit({ components: components(true) });
-              }
-              )
+                collector.on('end', (collected, reason) => {
+                  if (reason == "time") {
+                    initialMessage.edit({
+                      content: "Collector Destroyed, Try Again!",
+                      components: [],
+                    });
+                }
     },
 };
