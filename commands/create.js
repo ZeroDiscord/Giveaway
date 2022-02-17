@@ -12,7 +12,10 @@ module.exports.run = async (client, message) => {
   .setTitle("Oops! Looks Like We Met A Timeout! 🕖")
   .setColor("#FF0000")
   .setDescription('💥 Snap our luck!\nYou took too much time to decide!\nUse ``create`` again to start a new giveaway!\nTry to respond within **30 seconds** this time!')
-  .setFooter(client.user.username, client.user.displayAvatarURL())
+  .setFooter({
+     text: `${client.user.username}`,
+     iconURL: client.user.displayAvatarURL()
+  })  
   .setTimestamp()
 
 
@@ -20,16 +23,16 @@ module.exports.run = async (client, message) => {
     return message.channel.send({
       embeds: [
         new MessageEmbed()
-          .setAuthor(
-            message.author.tag + ' | Giveaway Setup',
-            message.member.displayAvatarURL()
-          )
+          .setAuthor({
+            text: `${message.author.tag} + ' | Giveaway Setup'`,
+            iconURL: message.member.displayAvatarURL()
+          })
           .setTitle('Giveaway ' + title)
           .setDescription(desc + ' within the next 60 seconds.')
-          .setFooter(
-            "Type 'cancel' to exit this process.",
-            client.user.displayAvatarURL()
-          )
+          .setFooter({
+            text: "Type 'cancel' to exit this process.",
+            iconURL: client.user.displayAvatarURL()
+           })
           .setTimestamp()
           .setColor('#2F3136'),
       ],
