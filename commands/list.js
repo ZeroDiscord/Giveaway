@@ -22,12 +22,18 @@ module.exports.run = async (client, message, args) => {
   let embed = new Discord.MessageEmbed()
     .setTitle("Currently Active Giveaways")
     .setColor("#2F3136")
-    .setFooter(client.user.username, client.user.displayAvatarURL())
+    .setFooter({
+      text: `${client.user.username}`, 
+      iconURL: client.user.displayAvatarURL()
+    })
     .setTimestamp()
   let embedGuild = new Discord.MessageEmbed()
     .setTitle("Currently Active Join Requirement Giveaways")
     .setColor("#2F3136")
-    .setFooter(client.user.username, client.user.displayAvatarURL())
+    .setFooter({
+      text: `${client.user.username}`, 
+      iconURL: client.user.displayAvatarURL()
+    })    
     .setTimestamp()
 
   const filter = x => x.customId == "select" && x.user.id == message.author.id
