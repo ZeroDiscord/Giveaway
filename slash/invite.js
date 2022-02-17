@@ -16,12 +16,19 @@ module.exports = {
         .setURL("https://discord.gg/ARu4hr6hJw"),
     )
     let invite = new MessageEmbed()
-    .setAuthor(`Invite ${client.user.username} `, client.user.avatarURL())
+      .setAuthor({ 
+          name: `Invite ${client.user.username}`, 
+          iconURL: client.user.displayAvatarURL() 
+      })    
     .setTitle("Invite & Support Link!")
     .setDescription(`Invite ${client.user} to your server today & enjoy seamless giveaways with advvanced features!`)
     .setColor('#2F3136')
     .setTimestamp()
-    .setFooter(`Requested by ${interaction.user.tag} | GiveawayBot™ v3 By ZeroSync`, interaction.user.displayAvatarURL())
+    .setFooter({
+        text: `Requested by ${interaction.user.username} | GiveawayBot™ v3 By ZeroSync`,
+        iconURL: interaction.user.displayAvatarURL()
+    })
+    
     interaction.reply({ embeds: [invite], components: [row]});
 }
 }
