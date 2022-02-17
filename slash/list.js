@@ -25,13 +25,19 @@ module.exports = {
           let embed = new Discord.MessageEmbed()
             .setTitle("Currently Active Giveaways")
             .setColor("#2F3136")
-            .setFooter(client.user.username, client.user.displayAvatarURL())
+            .setFooter({
+               text: `Requested by ${interaction.user.username} | GiveawayBot™ v3 By ZeroSync`,
+               iconURL: interaction.user.displayAvatarURL()
+            })
             .setTimestamp()
           let embedGuild = new Discord.MessageEmbed()
             .setTitle("Currently Active Join Requirement Giveaways")
             .setColor("#2F3136")
-            .setFooter(client.user.username, client.user.displayAvatarURL())
-            .setTimestamp()
+            .setFooter({
+               text: `Requested by ${interaction.user.username} | GiveawayBot™ v3 By ZeroSync`,
+               iconURL: interaction.user.displayAvatarURL()
+            })
+          .setTimestamp()
           const filter = x => x.customId == "select" && x.user.id == interaction.member.id
           const collector = await interaction.channel.createMessageComponentCollector({ filter, time: 60000, max: 1 })
           await interaction.deferReply()
