@@ -1,4 +1,3 @@
-
 const { MessageEmbed, MessageActionRow, MessageSelectMenu } = require("discord.js");
 const config = require('../config.json');
 
@@ -10,7 +9,10 @@ const embed = new MessageEmbed()
 .setDescription('**Please Select a category to view all its commands**')
 .addField(`Links:`,`- [Youtube Channel](https://youtube.com/c/Zerosync)\n- [Discord Server](https://discord.gg/ARu4hr6hJw)\n- [GitHub](https://github.com/ZeroDiscord/Giveaway)`,true)
 .setTimestamp()
-.setFooter(`Requested by ${message.author.username} | GiveawayBot™ v3 By ZeroSync`, message.author.displayAvatarURL());
+.setFooter({
+  text: `Requested by ${message.author.username} | GiveawayBot™ v3 By ZeroSync`, 
+  iconURL: message.author.displayAvatarURL()
+});
 
   const giveaway = new MessageEmbed()
   .setTitle("Categories » Giveaway")
@@ -26,8 +28,10 @@ const embed = new MessageEmbed()
     { name: 'Resume' , value: `Resume a paused giveaway!\n > **Type: __\`slash\`__**`, inline: true },
   )
   .setTimestamp()
-  .setFooter(`Requested by ${message.author.username} | GiveawayBot™ v3 By ZeroSync`, message.author.displayAvatarURL());
-
+  .setFooter({
+    text: `Requested by ${message.author.username} | GiveawayBot™ v3 By ZeroSync`, 
+    iconURL: message.author.displayAvatarURL()
+  });
 
   const general = new MessageEmbed()
   .setTitle("Categories » General")
@@ -39,8 +43,11 @@ const embed = new MessageEmbed()
     { name: 'Ping' , value: `Check the bot's websocket latency!\n > **Types: __\`slash\` / \`message\`__**`, inline: true },
   )
   .setTimestamp()
-  .setFooter(`Requested by ${message.author.username} | GiveawayBot™ v3 By ZeroSync`, message.author.displayAvatarURL());
-
+  .setFooter({
+    text: `Requested by ${message.author.username} | GiveawayBot™ v3 By ZeroSync`, 
+    iconURL: message.author.displayAvatarURL()
+  });
+  
   const components = (state) => [
     new MessageActionRow().addComponents(
         new MessageSelectMenu()
@@ -71,18 +78,23 @@ const filter = (interaction) => interaction.user.id === message.author.id;
             {
                 filter,
                 componentType: "SELECT_MENU",
-                time: 300000
+                idle: 300000,
+                dispose: true,
             });
 
         collector.on('collect', (interaction) => {
             if (interaction.values[0] === "giveaway") {
-                interaction.update({ embeds: [giveaway], components: components(false) });
+                interaction.update({ embeds: [giveaway], components: components(false) }).catch((e) => {});
             } else if (interaction.values[0] === "general") {
-                interaction.update({ embeds: [general], components: components(false) });
+                interaction.update({ embeds: [general], components: components(false) }).catch((e) => {});
             }
         });
-        collector.on('end', () => {
-          initialMessage.edit({ components: components(true) });
-      }
-      )
+        collector.on("end", (collected, reason) => {
+            if (reason == "time") {
+                initialMessage.edit({
+                   content: "Collector Destroyed, Try Again!",
+                   components: [],
+                });
+             }
+        });
 }

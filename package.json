@@ -18,7 +18,7 @@
   ],
   "dependencies": {
     "discord-giveaways": "^5.0.1",
-    "discord.js": "^13.3.0",
+    "discord.js": "^13.6.0",
     "ms": "^3.0.0-canary.1",
     "parsec": "^2.0.2"
   },

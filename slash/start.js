@@ -118,7 +118,7 @@ module.exports = {
             color: "#2F3136",
             author: {
               name: client.user.username,
-              icon_url: client.user.avatarURL
+              iconURL: client.user.displayAvatarURL() 
             },
             title: "Server Check!",
             url: "https://youtube.com/c/ZeroSync",
@@ -126,7 +126,7 @@ module.exports = {
               "Woah woah woah! I see a new server! are you sure I am in that? You need to invite me there to set that as a requirement! 😳",
             timestamp: new Date(),
             footer: {
-              icon_url: client.user.avatarURL,
+              iconURL: client.user.displayAvatarURL(),
               text: "Server Check"
             }
           }]
@@ -176,7 +176,7 @@ module.exports = {
 
     if (bonusRole) {
       let giveaway = new Discord.MessageEmbed()
-        .setAuthor(`Bonus Entries Alert!`)
+        .setAuthor({ text: `Bonus Entries Alert!` })
         .setDescription(
           `**${bonusRole}** Has **${bonusEntries}** Extra Entries in this giveaway!`
         )
