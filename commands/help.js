@@ -9,7 +9,10 @@ const embed = new MessageEmbed()
 .setDescription('**Please Select a category to view all its commands**')
 .addField(`Links:`,`- [Youtube Channel](https://youtube.com/c/Zerosync)\n- [Discord Server](https://discord.gg/ARu4hr6hJw)\n- [GitHub](https://github.com/ZeroDiscord/Giveaway)`,true)
 .setTimestamp()
-.setFooter(`Requested by ${message.author.username} | GiveawayBot™ v3 By ZeroSync`, message.author.displayAvatarURL());
+.setFooter({
+  text: `Requested by ${message.author.username} | GiveawayBot™ v3 By ZeroSync`, 
+  iconURL: message.author.displayAvatarURL()
+});
 
   const giveaway = new MessageEmbed()
   .setTitle("Categories » Giveaway")
@@ -25,8 +28,10 @@ const embed = new MessageEmbed()
     { name: 'Resume' , value: `Resume a paused giveaway!\n > **Type: __\`slash\`__**`, inline: true },
   )
   .setTimestamp()
-  .setFooter(`Requested by ${message.author.username} | GiveawayBot™ v3 By ZeroSync`, message.author.displayAvatarURL());
-
+  .setFooter({
+    text: `Requested by ${message.author.username} | GiveawayBot™ v3 By ZeroSync`, 
+    iconURL: message.author.displayAvatarURL()
+  });
 
   const general = new MessageEmbed()
   .setTitle("Categories » General")
@@ -38,8 +43,11 @@ const embed = new MessageEmbed()
     { name: 'Ping' , value: `Check the bot's websocket latency!\n > **Types: __\`slash\` / \`message\`__**`, inline: true },
   )
   .setTimestamp()
-  .setFooter(`Requested by ${message.author.username} | GiveawayBot™ v3 By ZeroSync`, message.author.displayAvatarURL());
-
+  .setFooter({
+    text: `Requested by ${message.author.username} | GiveawayBot™ v3 By ZeroSync`, 
+    iconURL: message.author.displayAvatarURL()
+  });
+  
   const components = (state) => [
     new MessageActionRow().addComponents(
         new MessageSelectMenu()
