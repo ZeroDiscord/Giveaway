@@ -176,7 +176,7 @@ module.exports = {
 
     if (bonusRole) {
       let giveaway = new Discord.MessageEmbed()
-        .setAuthor({ text: `Bonus Entries Alert!` })
+        .setAuthor({ name: `Bonus Entries Alert!` })
         .setDescription(
           `**${bonusRole}** Has **${bonusEntries}** Extra Entries in this giveaway!`
         )
