@@ -2,15 +2,16 @@
 [![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com)
 
 ### A Discord Giveaway bot written in Discord.js to create & enjoy Feature rich and Seamless Giveaways within your very own Discord guild!
+
 ## Links
 - ### This Giveaway Bot Was Created by [ZeroSync](https://youtube.com/c/ZeroSync/)
 - [Youtube Channel](https://www.youtube.com/c/ZeroSync)
 - [Support Server Link](https://discord.gg/ARu4hr6hJw)
+
 ## Licensed Under
 ### Creative Commons Zero v1.0 Universal
 [View the license here](https://github.com/ZeroDiscord/Giveaway/blob/master/LICENSE)
 #### Copyright 2021 © All Rights are Reserved 
-
 
 # Contributions
 
@@ -37,13 +38,16 @@ Please read [code of conduct](.github/CODE_OF_CONDUCT.md) for details on our cod
 ### Step 1: Install the Dependencies:
 Linux 
 ```sh
-apt install nodejs npm -y
-curl -sL https://deb.nodesource.com/setup_16.x -o nodesource_setup.sh
-chmod 777 nodesource_setup.sh
-./nodesource_setup.sh
-apt install nodejs -y
-npm install
+wget https://nodejs.org/dist/v16.18.0/node-v16.18.0-linux-x64.tar.xz
+unxz node-v16.18.0-linux-x64.tar.xz
+tar xvf node-v16.18.0-linux-x64.tar
+mv node-v16.18.0-linux-x64 /usr/local/node
 
+ln /usr/local/node/bin/node /usr/bin
+ln /usr/local/node/bin/corepack /usr/bin
+ln /usr/local/node/bin/npm /usr/bin
+
+corepack enable
 ```
 Windows 
 ```sh
