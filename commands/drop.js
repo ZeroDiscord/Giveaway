@@ -40,6 +40,8 @@ module.exports.run = async (client, message, args) => {
     winnerCount: parseInt(giveawayNumberWinners),
     // Who hosts this giveaway
     hostedBy: client.config.hostedBy ? message.author : null,
+    // specify drop
+    isDrop: true,
     // Messages
     messages
   });
