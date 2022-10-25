@@ -20,6 +20,7 @@ const embed = new MessageEmbed()
   .setDescription("```yaml\nHere are the giveaway commands:```")
   .addFields(
     { name: 'Create / Start'  , value: `Start a giveaway in your guild!\n > **Types: __\`slash\` / \`message\`__**`, inline: true },
+    { name: 'Drop' , value: `Start a drop giveaway!\n > **Types: __\`slash\` / \`message\`__**`, inline: true },
     { name: 'Edit' , value: `Edit an already running giveaway!\n > **Types: __\`slash\` / \`message\`__**`, inline: true },
     { name: 'End' , value: `End an already running giveaway!\n > **Types: __\`slash\` / \`message\`__**`, inline: true },
     { name: 'List' , value: `List all the giveaways running within this guild!\n > **Types: __\`slash\` / \`message\`__**`, inline: true },
