@@ -11,7 +11,7 @@ module.exports = {
       .addField(`Links:`, `- [Youtube Channel](https://youtube.com/c/Zerosync)\n- [Discord Server](https://discord.gg/ARu4hr6hJw)\n- [GitHub](https://github.com/ZeroDiscord/Giveaway)`, true)
       .setTimestamp()
       .setFooter({
-        text: `Requested by ${interaction.user.username} | GiveawayBot™ v3 By ZeroSync`,
+        text: `Requested by ${interaction.user.username} | ` + config.copyright,
         iconURL: interaction.user.displayAvatarURL()
       })
 
@@ -31,7 +31,7 @@ module.exports = {
       )
       .setTimestamp()
       .setFooter({
-        text: `Requested by ${interaction.user.username} | GiveawayBot™ v3 By ZeroSync`,
+        text: `Requested by ${interaction.user.username} | ` + config.copyright,
         iconURL: interaction.user.displayAvatarURL()
       })
 
@@ -46,7 +46,7 @@ module.exports = {
       )
       .setTimestamp()
       .setFooter({
-        text: `Requested by ${interaction.user.username} | GiveawayBot™ v3 By ZeroSync`,
+        text: `Requested by ${interaction.user.username} | ` + config.copyright,
         iconURL: interaction.user.displayAvatarURL()
       })
 
