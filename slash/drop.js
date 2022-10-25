@@ -1,4 +1,5 @@
 const messages = require("../utils/message");
+const {  ApplicationCommandOptionType } = require('discord.js');
 
 module.exports = {
     name: 'drop',
@@ -7,19 +8,19 @@ module.exports = {
         {
             name: 'winners',
             description: 'How many winners the giveaway should have',
-            type: 'INTEGER',
+            type: ApplicationCommandOptionType.Integer,
             required: true
         },
         {
             name: 'prize',
             description: 'What the prize of the giveaway should be',
-            type: 'STRING',
+            type: ApplicationCommandOptionType.String,
             required: true
         },
         {
             name: 'channel',
             description: 'The channel to start the giveaway in',
-            type: 'CHANNEL',
+            type: ApplicationCommandOptionType.Channel,
             required: true
         }
     ],
@@ -38,7 +39,7 @@ module.exports = {
         const giveawayWinnerCount = interaction.options.getInteger('winners');
         const giveawayPrize = interaction.options.getString('prize');
       
-    if (!giveawayChannel.isText()) {
+    if (!giveawayChannel.isTextBased()) {
       return interaction.reply({
         content: ':x: Please select a text channel!',
         ephemeral: true
