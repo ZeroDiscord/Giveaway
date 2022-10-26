@@ -19,14 +19,14 @@ const embed = new MessageEmbed()
   .setColor('#2F3136')
   .setDescription("```yaml\nHere are the giveaway commands:```")
   .addFields(
-    { name: 'Create / Start'  , value: `Start a giveaway in your guild!\n > **Types: __\`slash\` / \`message\`__**`, inline: true },
-    { name: 'Drop' , value: `Start a drop giveaway!\n > **Types: __\`slash\` / \`message\`__**`, inline: true },
-    { name: 'Edit' , value: `Edit an already running giveaway!\n > **Types: __\`slash\` / \`message\`__**`, inline: true },
-    { name: 'End' , value: `End an already running giveaway!\n > **Types: __\`slash\` / \`message\`__**`, inline: true },
-    { name: 'List' , value: `List all the giveaways running within this guild!\n > **Types: __\`slash\` / \`message\`__**`, inline: true },
-    { name: 'Pause' , value: `Pause an already running giveaway!\n > **Type: __\`slash\`__**`, inline: true },
-    { name: 'Reroll' , value: `Reroll an ended giveaway!\n > **Types: __\`slash\` / \`message\`__**`, inline: true },
-    { name: 'Resume' , value: `Resume a paused giveaway!\n > **Type: __\`slash\`__**`, inline: true },
+    { name: '🎉 Çekiliş Başlat'  , value: `Sununucunuzda Çekiliş Başlatırsınız\n > **Types: __\`slash\` / \`çekiliş-başlat\`__**`, inline: true },
+    { name: '🎉 Drop' , value: `Sunucunuzda Drop Çekiliş Yaparsınız\n > **Types: __\`slash\` / \`drop\`__**`, inline: true },
+    { name: '🎉 Çekiliş Düzenle' , value: `Yaptıgınız Çekilişi Düzenlersiniz\n > **Types: __\`slash\` / \`çekiliş-düzenle\`__**`, inline: true },
+    { name: '🎉 Çekiliş Bitir' , value: `Yaptıgınız Çekilişi Bitirirsiniz\n > **Types: __\`slash\` / \`çekiliş-bitir\`__**`, inline: true },
+    { name: '🎉 Çekiliş Liste' , value: `Sunucunuzdaki Aktif Çekilişlere Bakarsınız\n > **Types: __\`slash\` / \`çekiliş-liste\`__**`, inline: true },
+    { name: '🎉 Çekiliş Durdur' , value: `Aktif Çekilişleri Durdurursunuz\n > **Type: __\`slash\`/ \`çekiliş-durdursunuz\__**`, inline: true },
+    { name: '🎉 Yeniden Çek' , value: `Kazanan Kişiyi Yeniden Çekersinjz\n > **Types: __\`slash\` / \`message\`__**`, inline: true },
+    { name: '🎉 Çekiliş Devam' , value: `Durdurdugunuz Çekilişi Devam Ettirsiniz\n > **Type: __\`slash\`__**`, inline: true },
   )
   .setTimestamp()
   .setFooter({
