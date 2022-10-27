@@ -114,9 +114,7 @@ module.exports = {
       )
       reqinvite = invitex
       if (!client_is_in_server) {
-        return interaction.editReply({
-          embeds: [{
-            color: "#2F3136",
+          const gaEmbed = {
             author: {
               name: client.user.username,
               iconURL: client.user.displayAvatarURL() 
@@ -130,8 +128,8 @@ module.exports = {
               iconURL: client.user.displayAvatarURL(),
               text: "Server Check"
             }
-          }]
-        })
+          }  
+        return interaction.editReply({ embeds: [gaEmbed]})
       }
     }
 
@@ -176,7 +174,7 @@ module.exports = {
     })
 
     if (bonusRole) {
-      let giveaway = new Discord.MessageEmbed()
+      let giveaway = new Discord.EmbedBuilder()
         .setAuthor({ name: `Bonus Entries Alert!` })
         .setDescription(
           `**${bonusRole}** Has **${bonusEntries}** Extra Entries in this giveaway!`
