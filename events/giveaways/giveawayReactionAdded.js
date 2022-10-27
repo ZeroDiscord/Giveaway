@@ -1,7 +1,7 @@
 const Discord = require("discord.js")
 module.exports = {
   async execute(giveaway, reactor, messageReaction) {
-    let approved =  new Discord.MessageEmbed()
+    let approved =  new Discord.EmbedBuilder()
     .setTimestamp()
     .setColor("#2F3136")
     .setTitle("Entry Approved! | You have a chance to win!!")
@@ -10,10 +10,10 @@ module.exports = {
     )
     .setFooter({ text: "Subscribe to ZeroSync on YT!" })
     .setTimestamp()
-   let denied =  new Discord.MessageEmbed()
+   let denied =  new Discord.EmbedBuilder()
     .setTimestamp()
     .setColor("#2F3136")
-    .setTitle(":x: Entry Denied | Databse Entry Not Found & Returned!")
+    .setTitle(":x: Entry Denied | Database Entry Not Found & Returned!")
     .setDescription(
       `Your entry to [This Giveaway](https://discord.com/channels/${giveaway.guildId}/${giveaway.channelId}/${giveaway.messageId}) has been denied, please review the requirements to the giveaway properly.`
     )
