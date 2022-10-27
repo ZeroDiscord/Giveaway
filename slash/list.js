@@ -34,8 +34,8 @@ module.exports = {
       .setTitle('Currently Active Giveaways')
       .setColor('#f58142')
       .setFooter({
-        text: `Requested by ${interaction.user.username} | GiveawaySforLife`,
-        iconURL: interaction.user.displayAvatarURL(),
+          text: `Requested by ${interaction.user.username} | GiveawayBot™ v3 By ZeroSync`,
+          iconURL: interaction.user.displayAvatarURL()
       })
       .setTimestamp();
     const filter = (x) =>
