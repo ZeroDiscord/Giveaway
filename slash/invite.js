@@ -1,21 +1,21 @@
-const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
+const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 
 module.exports = {
     name: 'invite',
     description: '➕ Invite the bot to your server!',
     run: async (client, interaction) => {
-    const row = new MessageActionRow()
+    const row = new ActionRowBuilder()
     .addComponents(
-        new MessageButton()
+        new ButtonBuilder()
         .setLabel(`Invite ${client.user.username}`)
-        .setStyle('LINK')
+        .setStyle(ButtonStyle.Link)
         .setURL(`https://discord.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=8&scope=applications.commands%20bot`),
-        new MessageButton()
+        new ButtonBuilder()
         .setLabel('Support Server')
-        .setStyle('LINK')
+        .setStyle(ButtonStyle.Link)
         .setURL("https://discord.gg/ARu4hr6hJw"),
     )
-    let invite = new MessageEmbed()
+    let invite = new EmbedBuilder()
       .setAuthor({ 
           name: `Invite ${client.user.username}`, 
           iconURL: client.user.displayAvatarURL() 
