@@ -13,8 +13,8 @@ module.exports = {
       
       .setTimestamp()
       .setFooter({
-        text: `Requested by ${message.author.username} | ` + config.copyright, 
-        iconURL: message.author.displayAvatarURL()
+        text: `Requested by ${interaction.user.username} | ` + config.copyright,
+        iconURL: interaction.user.displayAvatarURL()
       });
 
     const giveaway = new EmbedBuilder()
@@ -33,8 +33,8 @@ module.exports = {
       )
       .setTimestamp()
       .setFooter({
-        text: `Requested by ${message.author.username} | ` + config.copyright, 
-        iconURL: message.author.displayAvatarURL()
+        text: `Requested by ${interaction.user.username} | ` + config.copyright,
+        iconURL: interaction.user.displayAvatarURL()
       });
 
     const general = new EmbedBuilder()
@@ -48,8 +48,8 @@ module.exports = {
       )
       .setTimestamp()
       .setFooter({
-        text: `Requested by ${message.author.username} | ` + config.copyright, 
-        iconURL: message.author.displayAvatarURL()
+        text: `Requested by ${interaction.user.username} | ` + config.copyright,
+        iconURL: interaction.user.displayAvatarURL()
       });
 
     const components = (state) => [
