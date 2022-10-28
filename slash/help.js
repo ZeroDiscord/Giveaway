@@ -13,9 +13,9 @@ module.exports = {
       
       .setTimestamp()
       .setFooter({
-        text: `Requested by ${message.author.username} | ` + config.copyright,
-        iconURL: interaction.user.displayAvatarURL()
-      })
+        text: `Requested by ${message.author.username} | ` + config.copyright, 
+        iconURL: message.author.displayAvatarURL()
+      });
 
     const giveaway = new EmbedBuilder()
       .setTitle("Categories » Giveaway")
@@ -33,9 +33,9 @@ module.exports = {
       )
       .setTimestamp()
       .setFooter({
-        text: `Requested by ${message.author.username} | ` + config.copyright,
-        iconURL: interaction.user.displayAvatarURL()
-      })
+        text: `Requested by ${message.author.username} | ` + config.copyright, 
+        iconURL: message.author.displayAvatarURL()
+      });
 
     const general = new EmbedBuilder()
       .setTitle("Categories » General")
@@ -48,9 +48,9 @@ module.exports = {
       )
       .setTimestamp()
       .setFooter({
-        text: `Requested by ${message.author.username} | ` + config.copyright,
-        iconURL: interaction.user.displayAvatarURL()
-      })
+        text: `Requested by ${message.author.username} | ` + config.copyright, 
+        iconURL: message.author.displayAvatarURL()
+      });
 
     const components = (state) => [
       new ActionRowBuilder().addComponents(
