@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const config = require('../config.json');
 
 module.exports = {
   name: 'list',
@@ -34,7 +35,7 @@ module.exports = {
       .setTitle('Currently Active Giveaways')
       .setColor('#f58142')
       .setFooter({
-          text: `Requested by ${interaction.user.username} | GiveawayBot™ v3 By ZeroSync`,
+          text: `Requested by ${interaction.user.username} | ` + config.copyright,
           iconURL: interaction.user.displayAvatarURL()
       })
       .setTimestamp();
