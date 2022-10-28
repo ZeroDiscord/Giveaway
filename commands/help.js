@@ -10,7 +10,7 @@ const embed = new EmbedBuilder()
 .addFields({ name: `Links:`, value: `- [Youtube Channel](https://youtube.com/c/Zerosync)\n- [Discord Server](https://discord.gg/ARu4hr6hJw)\n- [GitHub](https://github.com/ZeroDiscord/Giveaway)`, inline: true })
 .setTimestamp()
 .setFooter({
-  text: `Requested by ${message.author.username} | GiveawayBot™ v3 By ZeroSync`, 
+  text: `Requested by ${message.author.username} | ` + config.copyright, 
   iconURL: message.author.displayAvatarURL()
 });
 
@@ -30,7 +30,7 @@ const embed = new EmbedBuilder()
   )
   .setTimestamp()
   .setFooter({
-    text: `Requested by ${message.author.username} | GiveawayBot™ v3 By ZeroSync`, 
+    text: `Requested by ${message.author.username} | ` + config.copyright, 
     iconURL: message.author.displayAvatarURL()
   });
 
@@ -45,7 +45,7 @@ const embed = new EmbedBuilder()
   )
   .setTimestamp()
   .setFooter({
-    text: `Requested by ${message.author.username} | GiveawayBot™ v3 By ZeroSync`, 
+    text: `Requested by ${message.author.username} | ` + config.copyright, 
     iconURL: message.author.displayAvatarURL()
   });
   
