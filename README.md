@@ -28,7 +28,7 @@ Please read [code of conduct](.github/CODE_OF_CONDUCT.md) for details on our cod
 
 # You can run the bot in just a few steps! Let me show you how:
 ## Hosting 
-> ⚠  This bot needs a [Node.js v16+](https://nodejs.org/en/blog/release/v16.0.0/)  runtime to function since discord.js version 13 requires said node version to function.
+> ⚠  This bot needs a [Node.js v16.9+](https://nodejs.org/en/blog/release/v16.9.0/)  runtime to function since discord.js version 14 requires said node version to function.
 
 ### [Host On Repl.it](https://repl.it/github/ZeroDiscord/Giveaway)
 ### [Remix On Glitch](https://glitch.com/edit/#!/import/github/ZeroDiscord/Giveaway)
@@ -51,7 +51,7 @@ corepack enable
 ```
 Windows 
 ```sh
-# https://nodejs.org/en/blog/release/v16.0.0/ get node.js
+# https://nodejs.org/en/blog/release/v16.9.1/ get node.js
 npm install 
 ```
 
