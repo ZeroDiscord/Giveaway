@@ -1,14 +1,15 @@
 const Discord = require('discord.js'),
-  { MessageEmbed } = Discord,
+  { EmbedBuilder } = Discord,
   parsec = require('parsec'),
   messages = require('../utils/message');
+
 module.exports.run = async (client, message) => {
   const collector = message.channel.createMessageCollector({
     filter: (m) => m.author.id === message.author.id,
     time: 60000,
   });
 
-  let xembed = new MessageEmbed()
+  let xembed = new EmbedBuilder()
   .setTitle("Oops! Looks Like We Met A Timeout! 🕖")
   .setColor("#FF0000")
   .setDescription('💥 Snap our luck!\nYou took too much time to decide!\nUse ``create`` again to start a new giveaway!\nTry to respond within **30 seconds** this time!')
@@ -22,9 +23,9 @@ module.exports.run = async (client, message) => {
   function waitingEmbed(title, desc) {
     return message.channel.send({
       embeds: [
-        new MessageEmbed()
+        new EmbedBuilder()
           .setAuthor({
-            text: `${message.author.tag} + ' | Giveaway Setup'`,
+            name: `${message.author.tag} + ' | Giveaway Setup'`,
             iconURL: message.member.displayAvatarURL()
           })
           .setTitle('Giveaway ' + title)
@@ -36,6 +37,7 @@ module.exports.run = async (client, message) => {
           .setTimestamp()
           .setColor('#2F3136'),
       ],
+
     });
   }
 
@@ -51,7 +53,7 @@ module.exports.run = async (client, message) => {
         (cancelled = true) && (await m.reply(options));
       else {
         await m.reply(
-          options instanceof MessageEmbed ? { embeds: [options] } : options
+          options instanceof EmbedBuilder ? { embeds: [options] } : options
         );
         return await waitingEmbed(...cancel);
       }
@@ -85,7 +87,7 @@ module.exports.run = async (client, message) => {
             'Channel',
             'Please send the giveaway channel'
           );
-        else if (!_channel.isText())
+        else if (!_channel.isTextBased())
           return await failed(
             'The channel must be a text channel.',
             'Channel',

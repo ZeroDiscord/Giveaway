@@ -1,11 +1,12 @@
 module.exports.run = async (client, message) => {
   const Discord = require("discord.js");
+  const { EmbedBuilder } = require("discord.js");
   const ms = require("ms");
   let time = "";
   let winnersCount;
   let prize = "";
   let giveawayx = "";
-  let embed = new Discord.MessageEmbed()
+  let embed = new Discord.EmbedBuilder()
     .setTitle("Edit A Giveaway!")
     .setColor('#2F3136')
     .setFooter({ 
@@ -20,7 +21,7 @@ module.exports.run = async (client, message) => {
       )]
   }
   );
-  let xembed = new Discord.MessageEmbed()
+  let xembed = new Discord.EmbedBuilder()
     .setTitle("Oops! Looks Like We Met A Timeout! 🕖")
     .setColor("#FF0000")
     .setDescription('💥 Snap our luck!\nYou took too much time to decide!\nUse ``edit`` again to edit a giveaway!\nTry to respond within **30 seconds** this time!')
@@ -113,14 +114,14 @@ module.exports.run = async (client, message) => {
                 embed.setDescription(
                   `Alright, Generous Human! Next, What should be the new prize for the giveaway?\n**Must Reply within 30 seconds!**`
                 )]
-            }
-            )
-          );
+            })
+          )
         }
-        const collector4 = await message.channel.createMessageCollector(
-          filter,
-          { max: 3, time: 30000 }
-        );
+        const collector4 = await message.channel.createMessageCollector(filter, {
+        max: 3,
+        time: 30000,
+        errors: ['time']
+      });
         collector4.on("collect", async collect4 => {
 
           const response4 = collect4.content.toLowerCase();

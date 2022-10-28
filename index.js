@@ -1,5 +1,20 @@
-const Discord = require("discord.js");
-const client = new Discord.Client({ intents: 7753 });
+const Discord = require("discord.js")
+const { Client, GatewayIntentBits, Partials } = require("discord.js");
+const client = new Client({
+  partials: [
+    Partials.Message, // for message
+    Partials.Channel, // for text channel
+    Partials.GuildMember, // for guild member
+    Partials.Reaction, // for message reaction
+  ],
+  intents: [
+    GatewayIntentBits.Guilds, // for guild related things
+    GatewayIntentBits.GuildInvites, // for guild invite managing
+    GatewayIntentBits.GuildMessages, // for guild messages things
+    GatewayIntentBits.GuildMessageReactions, // for message reactions things
+    GatewayIntentBits.MessageContent, // enable if you need message content things
+  ],
+});
 const fs = require("fs");
 const config = require("./config.json");
 client.config = config;

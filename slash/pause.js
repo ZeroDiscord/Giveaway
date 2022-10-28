@@ -1,3 +1,5 @@
+const { ApplicationCommandOptionType } = require('discord.js');
+
 module.exports = {
     name: "pause",
     description: '⏸ Pause a giveaway',
@@ -6,7 +8,7 @@ module.exports = {
         {
             name: 'giveaway',
             description: 'The giveaway to pause (message ID or giveaway prize)',
-            type: 'STRING',
+            type: ApplicationCommandOptionType.String,
             required: true
         }
     ],

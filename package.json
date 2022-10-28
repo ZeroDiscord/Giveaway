@@ -1,7 +1,7 @@
 {
   "name": "GiveawayBot",
   "version": "3.0.0",
-  "description": "Giveaway bot created with discord-giveaways package in discord.js",
+  "description": "Giveaway bot created with discord-giveaways package in discord.js v14",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
@@ -17,8 +17,8 @@
     "discordjs"
   ],
   "dependencies": {
-    "discord-giveaways": "^5.0.1",
-    "discord.js": "^13.6.0",
+    "discord-giveaways": "^6.0.1",
+    "discord.js": "^14.6.0",
     "ms": "^3.0.0-canary.1",
     "parsec": "^2.0.2"
   },
