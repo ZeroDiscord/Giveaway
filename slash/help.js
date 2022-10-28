@@ -1,4 +1,5 @@
 const { EmbedBuilder, ActionRowBuilder, SelectMenuBuilder, ComponentType } = require('discord.js');
+const config = require('../config.json');
 
 module.exports = {
   name: 'help',
@@ -12,7 +13,7 @@ module.exports = {
       
       .setTimestamp()
       .setFooter({
-        text: `Requested by ${interaction.user.username} | GiveawayBot™ v3 By ZeroSync`,
+        text: `Requested by ${message.author.username} | ` + config.copyright,
         iconURL: interaction.user.displayAvatarURL()
       })
 
@@ -32,7 +33,7 @@ module.exports = {
       )
       .setTimestamp()
       .setFooter({
-        text: `Requested by ${interaction.user.username} | GiveawayBot™ v3 By ZeroSync`,
+        text: `Requested by ${message.author.username} | ` + config.copyright,
         iconURL: interaction.user.displayAvatarURL()
       })
 
@@ -47,7 +48,7 @@ module.exports = {
       )
       .setTimestamp()
       .setFooter({
-        text: `Requested by ${interaction.user.username} | GiveawayBot™ v3 By ZeroSync`,
+        text: `Requested by ${message.author.username} | ` + config.copyright,
         iconURL: interaction.user.displayAvatarURL()
       })
 
