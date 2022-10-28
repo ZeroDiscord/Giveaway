@@ -23,7 +23,7 @@ module.exports.run = async (client, message, args) => {
     .setColor('#2F3136')
     .setTimestamp()
     .setFooter({
-        text: `Requested by ${message.author.tag} | GiveawayBot™ v3 By ZeroSync`, 
+        text: `Requested by ${message.author.username} | ` + config.copyright,
         iconURL: message.author.displayAvatarURL()
     })
     message.reply({ embeds: [invite], components: [row]});
