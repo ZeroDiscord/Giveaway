@@ -1,4 +1,5 @@
 const Discord = require("discord.js")
+const {  ApplicationCommandOptionType } = require("discord.js");
 const messages = require("../utils/message");
 const ms = require("ms")
 module.exports = {
@@ -9,49 +10,49 @@ module.exports = {
     {
       name: 'duration',
       description: 'How long the giveaway should last for. Example values: 1m, 1h, 1d',
-      type: 'STRING',
+      type: ApplicationCommandOptionType.String,
       required: true
     },
     {
       name: 'winners',
       description: 'How many winners the giveaway should have',
-      type: 'INTEGER',
+      type: ApplicationCommandOptionType.Integer,
       required: true
     },
     {
       name: 'prize',
       description: 'What the prize of the giveaway should be',
-      type: 'STRING',
+      type: ApplicationCommandOptionType.String,
       required: true
     },
     {
       name: 'channel',
       description: 'The channel to start the giveaway in',
-      type: 'CHANNEL',
+      type: ApplicationCommandOptionType.Channel,
       required: true
     },
     {
       name: 'bonusrole',
       description: 'Role which would recieve bonus entries',
-      type: 'ROLE',
+      type: ApplicationCommandOptionType.Role,
       required: false
     },
     {
       name: 'bonusamount',
       description: 'The amount of bonus entries the role will recieve',
-      type: 'INTEGER',
+      type: ApplicationCommandOptionType.Integer,
       required: false
     },
     {
       name: 'invite',
       description: 'Invite of the server you want to add as giveaway joining requirement',
-      type: 'STRING',
+      type: ApplicationCommandOptionType.String,
       required: false
     },
     {
       name: 'role',
       description: 'Role you want to add as giveaway joining requirement',
-      type: 'ROLE',
+      type: ApplicationCommandOptionType.Role,
       required: false
     },
   ],
@@ -71,7 +72,7 @@ module.exports = {
     const giveawayWinnerCount = interaction.options.getInteger('winners');
     const giveawayPrize = interaction.options.getString('prize');
 
-    if (!giveawayChannel.isText()) {
+    if (!giveawayChannel.isTextBased()) {
       return interaction.reply({
         content: ':x: Please select a text channel!',
         ephemeral: true
@@ -113,9 +114,7 @@ module.exports = {
       )
       reqinvite = invitex
       if (!client_is_in_server) {
-        return interaction.editReply({
-          embeds: [{
-            color: "#2F3136",
+          const gaEmbed = {
             author: {
               name: client.user.username,
               iconURL: client.user.displayAvatarURL() 
@@ -129,8 +128,8 @@ module.exports = {
               iconURL: client.user.displayAvatarURL(),
               text: "Server Check"
             }
-          }]
-        })
+          }  
+        return interaction.editReply({ embeds: [gaEmbed]})
       }
     }
 
@@ -175,7 +174,7 @@ module.exports = {
     })
 
     if (bonusRole) {
-      let giveaway = new Discord.MessageEmbed()
+      let giveaway = new Discord.EmbedBuilder()
         .setAuthor({ name: `Bonus Entries Alert!` })
         .setDescription(
           `**${bonusRole}** Has **${bonusEntries}** Extra Entries in this giveaway!`
