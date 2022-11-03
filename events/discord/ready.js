@@ -6,7 +6,7 @@ module.exports = async (client) => {
     name: command.name,
     description: command.description,
     options: command.options,
-    type: 'CHAT_INPUT'
+    type: '1'
   })), {
     debug: true
   });
