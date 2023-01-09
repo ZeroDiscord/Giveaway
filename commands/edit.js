@@ -138,7 +138,7 @@ module.exports.run = async (client, message) => {
             )
           );
           client.giveawaysManager.edit(gid, {
-            newWinnersCount: winnersCount,
+            newWinnerCount: winnersCount,
             newPrize: prize,
             addTime: time
           })
