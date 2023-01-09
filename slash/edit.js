@@ -51,7 +51,7 @@ module.exports = {
         // Edit the giveaway
         try {
         await client.giveawaysManager.edit(gid, {
-            newWinnersCount: winnersCount,
+            newWinnerCount: winnersCount,
             newPrize: prize,
             addTime: time
         })
