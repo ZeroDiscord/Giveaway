@@ -152,6 +152,8 @@ module.exports = {
       prize: giveawayPrize,
       // The giveaway winner count
       winnerCount: parseInt(giveawayWinnerCount),
+      // Hosted by
+      hostedBy: client.config.hostedBy ? interaction.user : null,
       // BonusEntries If Provided
       bonusEntries: [
         {

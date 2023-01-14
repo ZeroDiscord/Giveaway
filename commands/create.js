@@ -153,8 +153,8 @@ module.exports.run = async (client, message) => {
           prize,
           duration,
           winnerCount,
+          hostedBy: client.config.hostedBy ? message.author : null,
           messages,
-          hostedBy: client.config.hostedBy && message.author,
         });
       }
     }
