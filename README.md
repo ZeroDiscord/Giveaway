@@ -56,12 +56,6 @@ npm install
 ```
 
 ### Step 2: Obtain a Bot Token From [Here](https://discord.com/developers) <br> <br>
-<kbd>
-  <img src="https://zerosnap.000webhostapp.com/2faykzzg.gif">
-</kbd>
-<b>
-  
-
 ### Step 3 : Replace the Token in [config.json](https://github.com/ZeroDiscord/Giveaway/blob/master/config.json) <br>
 #### That's all! We Are Done! Now Simply host the Bot!
 
@@ -76,26 +70,9 @@ pm2 start --name "Giveaway" index.js --watch
 ```
 
 # Features
-## Featuring | Slash Commands 
-<kbd>
-  <img src="https://zerosnap.000webhostapp.com/ktfoi0f9.gif">
-</kbd>
-<b>
-  
+## Featuring | Slash Commands  
 ### Interactive Giveaway Creation
-  
-  <kbd>
-  <img src="https://zerosnap.000webhostapp.com/mig6cvt0.gif">
-</kbd>
-<b>
-  
-### Featured ✨ Bonus Entries 
-<kbd>
-  <img src="https://zerosnap.000webhostapp.com/8eblx4sc.gif">
-</kbd>
-<b>
-
-  
+### Featured ✨ Bonus Entries   
 ### And Lots More!
 - Direct message when the server mentioned for joining is not joined
 - Direct message when the server mentioned for joining is joined 
