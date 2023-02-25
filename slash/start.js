@@ -1,5 +1,5 @@
 const Discord = require("discord.js")
-const {  ApplicationCommandOptionType } = require("discord.js");
+const {  ApplicationCommandOptionType, PermissionFlagsBits } = require("discord.js");
 const messages = require("../utils/message");
 const ms = require("ms")
 module.exports = {
@@ -60,7 +60,7 @@ module.exports = {
   run: async (client, interaction) => {
 
     // If the member doesn't have enough permissions
-    if (!interaction.member.permissions.has('MANAGE_MESSAGES') && !interaction.member.roles.cache.some((r) => r.name === "Giveaways")) {
+    if (!interaction.member.permissions.has(PermissionFlagsBits.ManageMessages) && !interaction.member.roles.cache.some((r) => r.name === "Giveaways")) {
       return interaction.reply({
         content: ':x: You need to have the manage messages permissions to start giveaways.',
         ephemeral: true
