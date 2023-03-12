@@ -1,6 +1,17 @@
 module.exports.run = async (client, message) => {
     const Discord = require("discord.js");
     const ms = require("ms");
+
+      // If the member doesn't have enough permissions
+  if (
+    !message.member.permissions.has("ManageMessages") &&
+    !message.member.roles.cache.some(r => r.name === "Giveaways")
+  ) {
+    return message.reply(
+      ":x: You need to have the manage messages permissions to start giveaways."
+    );
+  }
+  
     let time = "";
     let winnersCount;
     let prize = "";
