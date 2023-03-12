@@ -1,7 +1,7 @@
 exports.run = async (client, message, args) => {
 
     // If the member doesn't have enough permissions
-    if(!message.member.permissions.has('MANAGE_MESSAGES') && !message.member.roles.cache.some((r) => r.name === "Giveaways")){
+    if(!message.member.permissions.has('ManageMessages') && !message.member.roles.cache.some((r) => r.name === "Giveaways")){
         return message.reply(':x: You need to have the manage messages permissions to reroll giveaways.');
     }
 
